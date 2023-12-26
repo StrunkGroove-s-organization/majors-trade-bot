@@ -1,0 +1,14 @@
+.env
+venv/
+celerybeat-schedule
+__pycache__/
+migrations/
+
+
+
+
+
+
+
+
+
