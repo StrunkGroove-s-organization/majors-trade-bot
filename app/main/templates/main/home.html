@@ -1,0 +1,52 @@
+<!-- templates/home.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Positive Links</title>
+</head>
+<body>
+    <h1>Positive Links</h1>
+
+    {% if positive_links %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>First</th>
+                    <th>Second</th>
+                    <th>Third</th>
+                    <th>Spread</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for link in positive_links %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            <strong>Base:</strong> {{ link.first.base }}<br>
+                            <strong>Quote:</strong> {{ link.first.quote }}<br>
+                            <strong>Price:</strong> {{ link.first.price }}
+                        </td>
+                        <td>
+                            <strong>Base:</strong> {{ link.second.base }}<br>
+                            <strong>Quote:</strong> {{ link.second.quote }}<br>
+                            <strong>Price:</strong> {{ link.second.price }}
+                        </td>
+                        <td>
+                            <strong>Base:</strong> {{ link.third.base }}<br>
+                            <strong>Quote:</strong> {{ link.third.quote }}<br>
+                            <strong>Price:</strong> {{ link.third.price }}
+                        </td>
+                        <td>{{ link.spread }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No positive links available.</p>
+    {% endif %}
+</body>
+</html>
