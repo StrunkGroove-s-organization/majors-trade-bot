@@ -49,6 +49,8 @@ class Count(RedisClass):
                     }
                     self.positive_spread.append(record)
 
+        self.positive_spread.sort(key=lambda x: x['spread'], reverse=True)
+
     def save(self):
         cache.set(
             self.key_positive_links, 

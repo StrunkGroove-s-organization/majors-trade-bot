@@ -3,7 +3,7 @@ venv/
 celerybeat-schedule
 __pycache__/
 migrations/
-
+db/
 
 
 
