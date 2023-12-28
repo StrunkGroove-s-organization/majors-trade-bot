@@ -1,19 +1,19 @@
 version: "3"
 
 services:
-  nginx:
-    restart: always
-    build: ./nginx/test
-    ports:
-      - 80:80
-    depends_on:
-      - web
-    networks:
-      - trade-bot-network
+  # nginx:
+  #   restart: always
+  #   build: ./nginx/test
+  #   ports:
+  #     - 80:80
+  #   depends_on:
+  #     - web
+  #   networks:
+  #     - trade-bot-network
 
   redis:
     ports:
-      - 6379:6379
+      - 6380:6379
     volumes:
       - ./db/redis:/data
     image: redis:7-alpine
@@ -25,7 +25,7 @@ services:
     build: .
     command: sh -c "sleep 2 && gunicorn myproject.wsgi:application -w 4 -b 0.0.0.0:8000"
     ports:
-      - 8000:8000
+      - 8001:8000
     env_file:
       - .env
     volumes:
