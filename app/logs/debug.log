@@ -2764,3 +2764,5 @@ Not Found: /favicon.ico
 "GET / HTTP/1.1" 200 682370
 "GET /check-ticker/ HTTP/1.1" 200 904
 "POST /check-ticker/ HTTP/1.1" 200 1085
+/app/main/services.py changed, reloading.
+Watching for file changes with StatReloader

@@ -4,7 +4,7 @@ from parsing.services import SpotBinance
 class CheckPriceBinance(SpotBinance):
     def __init__(self, ticker: str) -> None:
         super().__init__()
-        self.ticker = ticker
+        self.ticker = ticker.upper()
 
     def find_ticker(self, data: dict) -> list:
         tickers = []
