@@ -1,14 +1,8 @@
-<!-- templates/home.html -->
+{% extends 'main/base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Positive Links</title>
-</head>
-<body>
-    <h1>Positive Links</h1>
+{% block title %}Positive Links{% endblock %}
+
+{% block content %}
 
     {% if positive_links %}
         <table border="1">
@@ -28,25 +22,29 @@
                         <td>
                             <strong>Base:</strong> {{ link.first.base }}<br>
                             <strong>Quote:</strong> {{ link.first.quote }}<br>
-                            <strong>Price:</strong> {{ link.first.price }}
+                            <strong>Price:</strong> {{ link.first.price }}<br>
+                            <strong>Binance price:</strong> {{ link.first.binance_price }}
                         </td>
                         <td>
                             <strong>Base:</strong> {{ link.second.base }}<br>
                             <strong>Quote:</strong> {{ link.second.quote }}<br>
-                            <strong>Price:</strong> {{ link.second.price }}
+                            <strong>Price:</strong> {{ link.second.price }}<br>
+                            <strong>Binance price:</strong> {{ link.second.binance_price }}
                         </td>
                         <td>
                             <strong>Base:</strong> {{ link.third.base }}<br>
                             <strong>Quote:</strong> {{ link.third.quote }}<br>
-                            <strong>Price:</strong> {{ link.third.price }}
+                            <strong>Price:</strong> {{ link.third.price }}<br>
+                            <strong>Binance price:</strong> {{ link.third.binance_price }}
                         </td>
                         <td>{{ link.spread }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
+        
     {% else %}
         <p>No positive links available.</p>
     {% endif %}
-</body>
-</html>
+    
+{% endblock %}

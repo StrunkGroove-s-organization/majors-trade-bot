@@ -21,17 +21,20 @@ class Count(RedisClass):
             start_base = start_info['base']
             if start_base != 'USDT': continue
             start_quote = start_info['quote']
+            start_bin_price = start_info['binance_price']
 
             for mid_info in data.values():
                 mid_base = mid_info['base']
                 if start_quote != mid_base: continue
                 mid_quote = mid_info['quote']
-
+                mid_bin_price = mid_info['binance_price']
+                
                 for end_info in data_usdt.values():
                     end_base = end_info['base']
                     if mid_quote != end_base: continue
                     end_quote = end_info['quote']
                     if end_quote != 'USDT': continue
+                    end_bin_price = end_info['binance_price']
 
                     spread = self.count_spread(
                         start_info['price'],

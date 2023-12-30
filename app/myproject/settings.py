@@ -12,7 +12,7 @@ DEBUG = getenv('DEBUG').upper() == 'TRUE'
 
 ALLOWED_HOSTS = getenv('ALLOWED_HOSTS').split(',')
 
-EXTENSION_APP = ['parsing', 'count', 'main']
+EXTENSION_APP = ['parsing', 'count', 'main', 'binance']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -55,9 +55,13 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('POSTGRES_DB'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': 'db',
+        'PORT': os.getenv('POSTGRES_PORT'),
+    },
 }
 
 CACHES = {
@@ -85,6 +89,25 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': './logs/debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
 
 LANGUAGE_CODE = 'en-us'
 

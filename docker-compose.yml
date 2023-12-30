@@ -11,6 +11,17 @@ services:
   #   networks:
   #     - trade-bot-network
 
+  db:
+    image: postgres:16
+    volumes:
+        - ./db/postgres:/var/lib/postgresql/data/
+    ports:
+        - 5435:5432
+    env_file:
+        - .env
+    networks:
+      - trade-bot-network
+      
   redis:
     ports:
       - 6380:6379
@@ -23,7 +34,8 @@ services:
   web:
     restart: always
     build: .
-    command: sh -c "sleep 2 && gunicorn myproject.wsgi:application -w 4 -b 0.0.0.0:8000"
+    # command: sh -c "sleep 2 && gunicorn myproject.wsgi:application -w 4 -b 0.0.0.0:8000"
+    command: sh -c "python manage.py runserver 0.0.0.0:8000"
     ports:
       - 8001:8000
     env_file:

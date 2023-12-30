@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Мой проект{% endblock %}</title>
+</head>
+<body>
+    <div id="menu">
+        <p><a href="{% url 'home' %}">Связки</a></p>
+        <p><a href="{% url 'check-ticker' %}">Проверить ticker</a></p>
+    </div>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

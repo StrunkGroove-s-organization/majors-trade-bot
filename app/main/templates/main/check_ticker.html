@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Проверка тикера{% endblock %}
+
+{% block content %}
+    {% if ticker %}
+        Ticker: {{ ticker }}
+        <br>
+        {% if info %}
+            {% for ticker_info in info %}
+                Symbol: {{ ticker_info.symbol }}<br> 
+                Price: {{ ticker_info.price }}<br>
+            {% endfor %}
+        {% else %}
+            No info by ticker
+        {% endif %}
+    {% endif %}
+
+    <form method="post" action="{% url 'check-ticker' %}">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Узнать</button>
+    </form>
+{% endblock %}

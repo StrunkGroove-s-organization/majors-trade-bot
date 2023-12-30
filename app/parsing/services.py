@@ -187,8 +187,8 @@ class SpotBinance(RedisClass):
         return response.json()
 
     def process_symbol(self, dict, symbol, quote, price) -> list:
-        dict[symbol] = {'base': symbol[:-len(quote)], 'quote': quote, 'price': price}
-        dict[f'{symbol}_fake'] = {'base': quote, 'quote': symbol[:-len(quote)], 'price': 1 / price}
+        dict[symbol] = {'base': symbol[:-len(quote)], 'quote': quote, 'price': price, 'binance_price': price}
+        dict[f'{symbol}_fake'] = {'base': quote, 'quote': symbol[:-len(quote)], 'price': 1 / price, 'binance_price': price}
     
     def filter(self, data: dict) -> dict:
         for ticker in data:
@@ -220,3 +220,4 @@ class SpotBinance(RedisClass):
         self.filter(data)
         self.save()
         return len(self.bnb) + len(self.usdt) + len(self.btc) + len(self.fusdt) + len(self.tusdt)
+    
