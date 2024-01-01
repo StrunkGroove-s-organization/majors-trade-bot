@@ -22,8 +22,8 @@ app.conf.beat_schedule = {
     },
 
     ### Counting
-    'count-spot-task': {
-        'task': 'count.tasks.count',
-        'schedule': 1,
-    },
+    # 'count-spot-task': {
+    #     'task': 'count.tasks.count',
+    #     'schedule': 1,
+    # },
 }
