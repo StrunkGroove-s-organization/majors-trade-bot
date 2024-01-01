@@ -69,11 +69,20 @@ class CountBookTicker(UpdateSpotBookTicker):
         return spread
 
     def get_price_by_symbol(self, coin: str, info: dict) -> float:
-        if coin == info['base']:
-            return info['quote'], info['bid_price']
-        elif coin == info['quote']:
-            return info['base'], info['ask_price']
-
+        fake = info.get('fake')
+        
+        if fake is not True:
+            if coin == info['base']:
+                return info['quote'], info['bid_price']
+            elif coin == info['quote']:
+                return info['base'], info['ask_price']
+            
+        else:
+            if coin == info['base']:
+                return info['quote'], info['ask_price']
+            elif coin == info['quote']:
+                return info['base'], info['bid_price']
+            
     def count(self, data: dict) -> None:
         for start_info in data:
             start_base = start_info['base']
