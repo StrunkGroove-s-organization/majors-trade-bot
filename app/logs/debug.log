@@ -2766,3 +2766,12 @@ Not Found: /favicon.ico
 "POST /check-ticker/ HTTP/1.1" 200 1085
 /app/main/services.py changed, reloading.
 Watching for file changes with StatReloader
+"POST /check-ticker/ HTTP/1.1" 200 1081
+"POST /check-ticker/ HTTP/1.1" 200 1083
+"GET /check-ticker/ HTTP/1.1" 200 904
+"GET / HTTP/1.1" 200 682896
+/app/parsing/services.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico

@@ -9,7 +9,19 @@
         {% if info %}
             {% for ticker_info in info %}
                 Symbol: {{ ticker_info.symbol }}<br> 
-                Price: {{ ticker_info.price }}<br>
+
+                {% if ticker_info.price %}
+                    Price: {{ ticker_info.price }}<br>
+                {% endif %}
+
+                {% if ticker_info.bid_price %}
+                    Bid price: {{ ticker_info.bid_price }}<br>
+                {% endif %}
+
+                {% if ticker_info.ask_price %}
+                    Ask price: {{ ticker_info.ask_price }}<br>
+                {% endif %}
+
             {% endfor %}
         {% else %}
             No info by ticker

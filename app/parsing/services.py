@@ -3,221 +3,173 @@ import requests
 from django.core.cache import cache
 
 
-bnb = {
-    "VENBNB", "YOYOBNB", "POWRBNB", "NULSBNB", "RCNBNB", "RDNBNB", "DLTBNB", "WTCBNB", "AMBBNB", "BCCBNB",
-    "BATBNB", "BCPTBNB", "NEOBNB", "QSPBNB", "BTSBNB", "XZCBNB", "LSKBNB", "IOTABNB", "ADXBNB", "CMTBNB",
-    "XLMBNB", "CNDBNB", "WABIBNB", "LTCBNB", "WAVESBNB", "GTOBNB", "ICXBNB", "OSTBNB", "AIONBNB", "NEBLBNB",
-    "BRDBNB", "MCOBNB", "NAVBNB", "TRIGBNB", "APPCBNB", "RLCBNB", "PIVXBNB", "STEEMBNB", "NANOBNB", "VIABNB",
-    "BLZBNB", "AEBNB", "RPXBNB", "NCASHBNB", "POABNB", "ZILBNB", "ONTBNB", "STORMBNB", "QTUMBNB", "XEMBNB",
-    "WANBNB", "SYSBNB", "QLCBNB", "ADABNB", "GNTBNB", "LOOMBNB", "BCNBNB", "REPBNB", "TUSDBNB", "ZENBNB",
-    "SKYBNB", "EOSBNB", "CVCBNB", "THETABNB", "XRPBNB", "AGIBNB", "NXSBNB", "ENJBNB", "TRXBNB", "ETCBNB",
-    "NASBNB", "MFTBNB", "ARDRBNB", "VETBNB", "POLYBNB", "PHXBNB", "GOBNB", "PAXBNB", "DCRBNB", "USDCBNB",
-    "MITHBNB", "RENBNB", "BTTBNB", "ONGBNB", "HOTBNB", "ZRXBNB", "FETBNB", "XMRBNB", "ZECBNB", "CELRBNB",
-    "DASHBNB", "OMGBNB", "MATICBNB", "ATOMBNB", "PHBBNB", "TFUELBNB", "ONEBNB", "FTMBNB", "ALGOBNB", "ERDBNB",
-    "DOGEBNB", "DUSKBNB", "ANKRBNB", "WINBNB", "COSBNB", "COCOSBNB", "TOMOBNB", "PERLBNB", "CHZBNB", "BANDBNB",
-    "BEAMBNB", "XTZBNB", "HBARBNB", "NKNBNB", "STXBNB", "KAVABNB", "ARPABNB", "CTXCBNB", "BCHBNB", "TROYBNB",
-    "VITEBNB", "FTTBNB", "OGNBNB", "DREPBNB", "TCTBNB", "WRXBNB", "LTOBNB", "STRATBNB", "MBLBNB", "COTIBNB",
-    "STPTBNB", "SOLBNB", "CTSIBNB", "HIVEBNB", "CHRBNB", "MDTBNB", "IQBNB", "COMPBNB", "SXPBNB", "SNXBNB",
-    "VTHOBNB", "IRISBNB", "MKRBNB", "DAIBNB", "RUNEBNB", "FIOBNB", "AVABNB", "BALBNB", "YFIBNB", "JSTBNB",
-    "SRMBNB", "ANTBNB", "CRVBNB", "SANDBNB", "OCEANBNB", "DOTBNB", "LUNABNB", "RSRBNB", "PAXGBNB", "WNXMBNB",
-    "TRBBNB", "BZRXBNB", "SUSHIBNB", "YFIIBNB", "KSMBNB", "EGLDBNB", "DIABNB", "BELBNB", "WINGBNB", "SWRVBNB",
-    "CREAMBNB", "UNIBNB", "AVAXBNB", "BAKEBNB", "BURGERBNB", "FLMBNB", "CAKEBNB", "SPARTABNB", "XVSBNB", "ALPHABNB",
-    "AAVEBNB", "NEARBNB", "FILBNB", "INJBNB", "CTKBNB", "KP3RBNB", "AXSBNB", "HARDBNB", "UNFIBNB", "PROMBNB",
-    "BIFIBNB", "ICPBNB", "ARBNB", "POLSBNB", "MDXBNB", "MASKBNB", "LPTBNB", "NUBNB", "ATABNB", "GTCBNB", "TORNBNB",
-    "KEEPBNB", "ERNBNB", "KLAYBNB", "BONDBNB", "MLNBNB", "QUICKBNB", "C98BNB", "CLVBNB", "QNTBNB", "FLOWBNB",
-    "MINABNB", "RAYBNB", "FARMBNB", "ALPACABNB", "MBOXBNB", "WAXPBNB", "TRIBEBNB", "GNOBNB", "DYDXBNB", "GALABNB",
-    "ILVBNB", "YGGBNB", "FIDABNB", "AGLDBNB", "RADBNB", "BETABNB", "RAREBNB", "CHESSBNB", "DARBNB", "BNXBNB",
-    "RGTBNB", "MOVRBNB", "CITYBNB", "ENSBNB", "QIBNB", "JASMYBNB", "AMPBNB", "PLABNB", "VOXELBNB", "MANABNB",
-    "GXSBNB", "LINKBNB", "ROSEBNB", "ALICEBNB", "LRCBNB", "OOKIBNB", "FORBNB", "LINABNB", "LOKABNB", "HIGHBNB",
-    "MCBNB", "WOOBNB", "PEOPLEBNB", "SLPBNB", "SPELLBNB", "IDEXBNB", "API3BNB", "TLMBNB", "GLMRBNB", "GMTBNB",
-    "ANCBNB", "BSWBNB", "APEBNB", "IMXBNB", "FUNBNB", "REIBNB", "GALBNB", "KNCBNB", "OPBNB", "HOOKBNB", "IDBNB",
-    "EDUBNB", "SUIBNB", "COMBOBNB", "ARKMBNB", "SEIBNB", "CYBERBNB", "NTRNBNB", "MEMEBNB", "ACEBNB"
-}
-
-usdt = {
-    "BTCUSDT", "ETHUSDT", "BNBUSDT", "BCCUSDT", "NEOUSDT", "LTCUSDT", "QTUMUSDT", "ADAUSDT", "XRPUSDT", "EOSUSDT",
-    "TUSDUSDT", "IOTAUSDT", "XLMUSDT", "ONTUSDT", "TRXUSDT", "ETCUSDT", "ICXUSDT", "VENUSDT", "NULSUSDT", "VETUSDT",
-    "PAXUSDT", "BCHABCUSDT", "BCHSVUSDT", "USDCUSDT", "LINKUSDT", "WAVESUSDT", "BTTUSDT", "USDSUSDT", "ONGUSDT",
-    "HOTUSDT", "ZILUSDT", "ZRXUSDT", "FETUSDT", "BATUSDT", "XMRUSDT", "ZECUSDT", "IOSTUSDT", "CELRUSDT", "DASHUSDT",
-    "NANOUSDT", "OMGUSDT", "THETAUSDT", "ENJUSDT", "MITHUSDT", "MATICUSDT", "ATOMUSDT", "TFUELUSDT", "ONEUSDT",
-    "FTMUSDT", "ALGOUSDT", "USDSBUSDT", "GTOUSDT", "ERDUSDT", "DOGEUSDT", "DUSKUSDT", "ANKRUSDT", "WINUSDT", "COSUSDT",
-    "NPXSUSDT", "COCOSUSDT", "MTLUSDT", "TOMOUSDT", "PERLUSDT", "DENTUSDT", "MFTUSDT", "KEYUSDT", "STORMUSDT",
-    "DOCKUSDT", "WANUSDT", "FUNUSDT", "CVCUSDT", "CHZUSDT", "BANDUSDT", "BUSDUSDT", "BEAMUSDT", "XTZUSDT", "RENUSDT",
-    "RVNUSDT", "HCUSDT", "HBARUSDT", "NKNUSDT", "STXUSDT", "KAVAUSDT", "ARPAUSDT", "IOTXUSDT", "RLCUSDT", "MCOUSDT",
-    "CTXCUSDT", "BCHUSDT", "TROYUSDT", "VITEUSDT", "FTTUSDT", "EURUSDT", "OGNUSDT", "DREPUSDT", "BULLUSDT", "BEARUSDT",
-    "ETHBULLUSDT", "ETHBEARUSDT", "TCTUSDT", "WRXUSDT", "BTSUSDT", "LSKUSDT", "BNTUSDT", "LTOUSDT", "EOSBULLUSDT",
-    "EOSBEARUSDT", "XRPBULLUSDT", "XRPBEARUSDT", "STRATUSDT", "AIONUSDT", "MBLUSDT", "COTIUSDT", "BNBBULLUSDT",
-    "BNBBEARUSDT", "STPTUSDT", "WTCUSDT", "DATAUSDT", "XZCUSDT", "SOLUSDT", "CTSIUSDT", "HIVEUSDT", "CHRUSDT",
-    "BTCUPUSDT", "BTCDOWNUSDT", "GXSUSDT", "ARDRUSDT", "LENDUSDT", "MDTUSDT", "STMXUSDT", "KNCUSDT", "REPUSDT",
-    "LRCUSDT", "PNTUSDT", "COMPUSDT", "BKRWUSDT", "SCUSDT", "ZENUSDT", "SNXUSDT", "ETHUPUSDT", "ETHDOWNUSDT",
-    "ADAUPUSDT", "ADADOWNUSDT", "LINKUPUSDT", "LINKDOWNUSDT", "VTHOUSDT", "DGBUSDT", "GBPUSDT", "SXPUSDT", "MKRUSDT",
-    "DAIUSDT", "DCRUSDT", "STORJUSDT", "BNBUPUSDT", "BNBDOWNUSDT", "XTZUPUSDT", "XTZDOWNUSDT", "MANAUSDT", "AUDUSDT",
-    "YFIUSDT", "BALUSDT", "BLZUSDT", "IRISUSDT", "KMDUSDT", "JSTUSDT", "SRMUSDT", "ANTUSDT", "CRVUSDT", "SANDUSDT",
-    "OCEANUSDT", "NMRUSDT", "DOTUSDT", "LUNAUSDT", "RSRUSDT", "PAXGUSDT", "WNXMUSDT", "TRBUSDT", "BZRXUSDT",
-    "SUSHIUSDT", "YFIIUSDT", "KSMUSDT", "EGLDUSDT", "DIAUSDT", "RUNEUSDT", "FIOUSDT", "UMAUSDT", "EOSUPUSDT",
-    "EOSDOWNUSDT", "TRXUPUSDT", "TRXDOWNUSDT", "XRPUPUSDT", "XRPDOWNUSDT", "DOTUPUSDT", "DOTDOWNUSDT", "BELUSDT",
-    "WINGUSDT", "LTCUPUSDT", "LTCDOWNUSDT", "UNIUSDT", "NBSUSDT", "OXTUSDT", "SUNUSDT", "AVAXUSDT", "HNTUSDT",
-    "FLMUSDT", "UNIUPUSDT", "UNIDOWNUSDT", "ORNUSDT", "UTKUSDT", "XVSUSDT", "ALPHAUSDT", "AAVEUSDT", "NEARUSDT",
-    "SXPUPUSDT", "SXPDOWNUSDT", "FILUSDT", "FILUPUSDT", "FILDOWNUSDT", "YFIUPUSDT", "YFIDOWNUSDT", "INJUSDT",
-    "AUDIOUSDT", "CTKUSDT", "BCHUPUSDT", "BCHDOWNUSDT", "AKROUSDT", "AXSUSDT", "HARDUSDT", "DNTUSDT", "STRAXUSDT",
-    "UNFIUSDT", "ROSEUSDT", "AVAUSDT", "XEMUSDT", "AAVEUPUSDT", "AAVEDOWNUSDT", "SKLUSDT", "SUSDUSDT", "SUSHIUPUSDT",
-    "SUSHIDOWNUSDT", "XLMUPUSDT", "XLMDOWNUSDT", "GRTUSDT", "JUVUSDT", "PSGUSDT", "1INCHUSDT", "REEFUSDT", "OGUSDT",
-    "ATMUSDT", "ASRUSDT", "CELOUSDT", "RIFUSDT", "BTCSTUSDT", "TRUUSDT", "CKBUSDT", "TWTUSDT", "FIROUSDT", "LITUSDT",
-    "SFPUSDT", "DODOUSDT", "CAKEUSDT", "ACMUSDT", "BADGERUSDT", "FISUSDT", "OMUSDT", "PONDUSDT", "DEGOUSDT",
-    "ALICEUSDT", "LINAUSDT", "PERPUSDT", "RAMPUSDT", "SUPERUSDT", "CFXUSDT", "EPSUSDT", "AUTOUSDT", "TKOUSDT",
-    "PUNDIXUSDT", "TLMUSDT", "1INCHUPUSDT", "1INCHDOWNUSDT", "BTGUSDT", "MIRUSDT", "BARUSDT", "FORTHUSDT", "BAKEUSDT",
-    "BURGERUSDT", "SLPUSDT", "SHIBUSDT", "ICPUSDT", "ARUSDT", "POLSUSDT", "MDXUSDT", "MASKUSDT", "LPTUSDT", "NUUSDT",
-    "XVGUSDT", "ATAUSDT", "GTCUSDT", "TORNUSDT", "KEEPUSDT", "ERNUSDT", "KLAYUSDT", "PHAUSDT", "BONDUSDT", "MLNUSDT",
-    "DEXEUSDT", "C98USDT", "CLVUSDT", "QNTUSDT", "FLOWUSDT", "TVKUSDT", "MINAUSDT", "RAYUSDT", "FARMUSDT", "ALPACAUSDT",
-    "QUICKUSDT", "MBOXUSDT", "FORUSDT", "REQUSDT", "GHSTUSDT", "WAXPUSDT", "TRIBEUSDT", "GNOUSDT", "XECUSDT", "ELFUSDT",
-    "DYDXUSDT", "POLYUSDT", "IDEXUSDT", "VIDTUSDT", "USDPUSDT", "GALAUSDT", "ILVUSDT", "YGGUSDT", "SYSUSDT", "DFUSDT",
-    "FIDAUSDT", "FRONTUSDT", "CVPUSDT", "AGLDUSDT", "RADUSDT", "BETAUSDT", "RAREUSDT", "LAZIOUSDT", "CHESSUSDT",
-    "ADXUSDT", "AUCTIONUSDT", "DARUSDT", "BNXUSDT", "RGTUSDT", "MOVRUSDT", "CITYUSDT", "ENSUSDT", "KP3RUSDT", "QIUSDT",
-    "PORTOUSDT", "POWRUSDT", "VGXUSDT", "JASMYUSDT", "AMPUSDT", "PLAUSDT", "PYRUSDT", "RNDRUSDT", "ALCXUSDT",
-    "SANTOSUSDT", "MCUSDT", "ANYUSDT", "BICOUSDT", "FLUXUSDT", "FXSUSDT", "VOXELUSDT", "HIGHUSDT", "CVXUSDT",
-    "PEOPLEUSDT", "OOKIUSDT", "SPELLUSDT", "USTUSDT", "JOEUSDT", "ACHUSDT", "IMXUSDT", "GLMRUSDT", "LOKAUSDT",
-    "SCRTUSDT", "API3USDT", "BTTCUSDT", "ACAUSDT", "ANCUSDT", "XNOUSDT", "WOOUSDT", "ALPINEUSDT", "TUSDT", "ASTRUSDT",
-    "NBTUSDT", "GMTUSDT", "KDAUSDT", "APEUSDT", "BSWUSDT", "BIFIUSDT", "MULTIUSDT", "STEEMUSDT", "MOBUSDT", 
-    "EPXUSDT", "OPUSDT", "LEVERUSDT", "STGUSDT", "LUNCUSDT", "GMXUSDT", "NEBLUSDT", "POLYXUSDT", "APTUSDT",
-    "OSMOUSDT", "HFTUSDT", "PHBUSDT", "HOOKUSDT", "MAGICUSDT", "HIFIUSDT", "RPLUSDT", "PROSUSDT", "AGIXUSDT",
-    "GNSUSDT", "SYNUSDT", "VIBUSDT", "SSVUSDT", "LQTYUSDT", "AMBUSDT", "BETHUSDT", "USTCUSDT", "GASUSDT",
-    "GLMUSDT", "PROMUSDT", "QKCUSDT", "UFTUSDT", "IDUSDT", "ARBUSDT", "LOOMUSDT", "OAXUSDT", "RDNTUSDT",
-    "WBTCUSDT", "EDUUSDT", "SUIUSDT", "AERGOUSDT", "PEPEUSDT", "FLOKIUSDT", "ASTUSDT", "SNTUSDT", "COMBOUSDT",
-    "MAVUSDT", "PENDLEUSDT", "ARKMUSDT", "WBETHUSDT", "WLDUSDT", "FDUSDUSDT", "SEIUSDT", "CYBERUSDT", "ARKUSDT",
-    "CREAMUSDT", "GFTUSDT", "IQUSDT", "NTRNUSDT", "TIAUSDT", "MEMEUSDT", "ORDIUSDT", "BEAMXUSDT", "PIVXUSDT",
-    "VICUSDT", "BLURUSDT", "VANRYUSDT", "AEURUSDT", "JTOUSDT", "1000SATSUSDT", "BONKUSDT", "ACEUSDT",
-    "NEXOUSDT", "REIUSDT", "GALUSDT", "LDOUSDT",
-}
-
-tusdt = {
-    "BTCTUSD", "ETHTUSD", "BNBTUSD", "XRPTUSD", "EOSTUSD",
-    "XLMTUSD", "ADATUSD", "TRXTUSD", "NEOTUSD", "PAXTUSD",
-    "USDCTUSD", "LINKTUSD", "WAVESTUSD", "BCHABCTUSD", "BCHSVTUSD",
-    "LTCTUSD", "USDSTUSD", "BTTTUSD", "ZECTUSD", "ATOMTUSD",
-    "ETCTUSD", "BATTUSD", "PHBTUSD", "TFUELTUSD", "ONETUSD",
-    "FTMTUSD", "BCPTTUSD", "ALGOTUSD", "GTOTUSD", "ANKRTUSD",
-    "TUSDBTUSD", "BCHTUSD", "ARBTUSD", "IDTUSD", "LDOTUSD",
-    "MATICTUSD", "OPTUSD", "SOLTUSD", "SSVTUSD", "RDNTTUSD",
-    "DOGETUSD", "EDUTUSD", "SUITUSD", "PEPETUSD", "FLOKITUSD",
-    "MAVTUSD", "CFXTUSD", "PENDLETUSD", "XVGTUSD", "ARKMTUSD",
-    "AVAXTUSD", "COMPTUSD", "QUICKTUSD", "CYBERTUSD", "SEITUSD",
-    "FRONTTUSD", "RUNETUSD", "MEMETUSD", "INJTUSD", "ORDITUSD",
-    "SHIBTUSD", "CAKETUSD", "TIATUSD", "DOTTUSD"
-}
-
-fusdt = {
-    "REEFUSDT", "RIFUSDT", "ELFUSDT", "DFUSDT"
-}
-
-btc = {
-    "ETHBTC", "LTCBTC", "BNBBTC", "NEOBTC", "BCCBTC", "GASBTC", "HSRBTC", "MCOBTC", "WTCBTC",
-    "LRCBTC", "QTUMBTC", "YOYOBTC", "OMGBTC", "ZRXBTC", "STRATBTC", "SNGLSBTC", "BQXBTC", "KNCBTC",
-    "FUNBTC", "SNMBTC", "IOTABTC", "LINKBTC", "XVGBTC", "SALTBTC", "MDABTC", "MTLBTC", "SUBBTC",
-    "EOSBTC", "SNTBTC", "ETCBTC", "MTHBTC", "ENGBTC", "DNTBTC", "ZECBTC", "BNTBTC", "ASTBTC", "DASHBTC",
-    "OAXBTC", "ICNBTC", "BTGBTC", "EVXBTC", "REQBTC", "VIBBTC", "TRXBTC", "POWRBTC", "ARKBTC", "XRPBTC",
-    "MODBTC", "ENJBTC", "STORJBTC", "VENBTC", "KMDBTC", "RCNBTC", "NULSBTC", "RDNBTC", "XMRBTC", "DLTBTC",
-    "AMBBTC", "BATBTC", "BCPTBTC", "ARNBTC", "GVTBTC", "CDTBTC", "GXSBTC", "POEBTC", "QSPBTC", "BTSBTC",
-    "XZCBTC", "LSKBTC", "TNTBTC", "FUELBTC", "MANABTC", "BCDBTC", "DGDBTC", "ADXBTC", "ADABTC", "PPTBTC",
-    "CMTBTC", "XLMBTC", "CNDBTC", "LENDBTC", "WABIBTC", "TNBBTC", "WAVESBTC", "GTOBTC", "ICXBTC", "OSTBTC",
-    "ELFBTC", "AIONBTC", "NEBLBTC", "BRDBTC", "EDOBTC", "WINGSBTC", "NAVBTC", "LUNBTC", "TRIGBTC", "APPCBTC",
-    "VIBEBTC", "RLCBTC", "INSBTC", "PIVXBTC", "IOSTBTC", "CHATBTC", "STEEMBTC", "NANOBTC", "VIABTC", "BLZBTC",
-    "AEBTC", "RPXBTC", "NCASHBTC", "POABTC", "ZILBTC", "ONTBTC", "STORMBTC", "XEMBTC", "WANBTC", "WPRBTC",
-    "QLCBTC", "SYSBTC", "GRSBTC", "CLOAKBTC", "GNTBTC", "LOOMBTC", "BCNBTC", "REPBTC", "TUSDBTC", "ZENBTC",
-    "SKYBTC", "CVCBTC", "THETABTC", "IOTXBTC", "QKCBTC", "AGIBTC", "NXSBTC", "DATABTC", "SCBTC", "NPXSBTC",
-    "KEYBTC", "NASBTC", "MFTBTC", "DENTBTC", "ARDRBTC", "HOTBTC", "VETBTC", "DOCKBTC", "POLYBTC", "PHXBTC",
-    "HCBTC", "GOBTC", "PAXBTC", "RVNBTC", "DCRBTC", "MITHBTC", "BCHABCBTC", "BCHSVBTC", "RENBTC", "BTTBTC",
-    "ONGBTC", "FETBTC", "CELRBTC", "MATICBTC", "ATOMBTC", "PHBBTC", "TFUELBTC", "ONEBTC", "FTMBTC", "BTCBBTC",
-    "ALGOBTC", "ERDBTC", "DOGEBTC", "DUSKBTC", "ANKRBTC", "WINBTC", "COSBTC", "COCOSBTC", "TOMOBTC", "PERLBTC",
-    "CHZBTC", "BANDBTC", "BEAMBTC", "XTZBTC", "HBARBTC", "NKNBTC", "STXBTC", "KAVABTC", "ARPABTC", "CTXCBTC",
-    "BCHBTC", "TROYBTC", "VITEBTC", "FTTBTC", "OGNBTC", "DREPBTC", "TCTBTC", "WRXBTC", "LTOBTC", "MBLBTC",
-    "COTIBTC", "STPTBTC", "SOLBTC", "CTSIBTC", "HIVEBTC", "CHRBTC", "MDTBTC", "STMXBTC", "PNTBTC", "DGBBTC",
-    "COMPBTC", "SXPBTC", "SNXBTC", "IRISBTC", "MKRBTC", "DAIBTC", "RUNEBTC", "FIOBTC", "AVABTC", "BALBTC",
-    "YFIBTC", "JSTBTC", "SRMBTC", "ANTBTC", "CRVBTC", "SANDBTC", "OCEANBTC", "NMRBTC", "DOTBTC", "LUNABTC",
-    "IDEXBTC", "RSRBTC", "PAXGBTC", "WNXMBTC", "TRBBTC", "BZRXBTC", "WBTCBTC", "SUSHIBTC", "YFIIBTC", "KSMBTC",
-    "EGLDBTC", "DIABTC", "UMABTC", "BELBTC", "WINGBTC", "UNIBTC", "NBSBTC", "OXTBTC", "SUNBTC", "AVAXBTC",
-    "HNTBTC", "FLMBTC", "SCRTBTC", "ORNBTC", "UTKBTC", "XVSBTC", "ALPHABTC", "VIDTBTC", "AAVEBTC", "NEARBTC",
-    "FILBTC", "INJBTC", "AERGOBTC", "AUDIOBTC", "CTKBTC", "BOTBTC", "AKROBTC", "AXSBTC", "HARDBTC", "RENBTCBTC",
-    "STRAXBTC", "FORBTC", "UNFIBTC", "ROSEBTC", "SKLBTC", "SUSDBTC", "GLMBTC", "GRTBTC", "JUVBTC", "PSGBTC",
-    "1INCHBTC", "REEFBTC", "OGBTC", "ATMBTC", "ASRBTC", "CELOBTC", "RIFBTC", "BTCSTBTC", "TRUBTC", "CKBBTC",
-    "TWTBTC", "FIROBTC", "LITBTC", "SFPBTC", "FXSBTC", "DODOBTC", "FRONTBTC", "EASYBTC", "CAKEBTC", "ACMBTC",
-    "AUCTIONBTC", "PHABTC", "TVKBTC", "BADGERBTC", "FISBTC", "OMBTC", "PONDBTC", "DEGOBTC", "ALICEBTC", "LINABTC",
-    "PERPBTC", "RAMPBTC", "SUPERBTC", "CFXBTC", "EPSBTC", "AUTOBTC", "TKOBTC", "TLMBTC", "MIRBTC", "BARBTC",
-    "FORTHBTC", "EZBTC", "ICPBTC", "ARBTC", "POLSBTC", "MDXBTC", "LPTBTC", "AGIXBTC", "NUBTC", "ATABTC", "GTCBTC",
-    "TORNBTC", "BAKEBTC", "KEEPBTC", "KLAYBTC", "BONDBTC", "MLNBTC", "QUICKBTC", "C98BTC", "CLVBTC", "QNTBTC",
-    "FLOWBTC", "MINABTC", "FARMBTC", "ALPACABTC", "MBOXBTC", "VGXBTC", "WAXPBTC", "TRIBEBTC", "GNOBTC", "PROMBTC",
-    "DYDXBTC", "GALABTC", "ILVBTC", "YGGBTC", "FIDABTC", "AGLDBTC", "RADBTC", "BETABTC", "RAREBTC", "SSVBTC",
-    "LAZIOBTC", "CHESSBTC", "DARBTC", "BNXBTC", "RGTBTC", "MOVRBTC", "CITYBTC", "ENSBTC", "QIBTC", "PORTOBTC",
-    "JASMYBTC", "AMPBTC", "PLABTC", "PYRBTC", "RNDRBTC", "ALCXBTC", "SANTOSBTC", "MCBTC", "ANYBTC", "BICOBTC",
-    "FLUXBTC", "VOXELBTC", "HIGHBTC", "CVXBTC", "PEOPLEBTC", "SPELLBTC", "USTBTC", "JOEBTC", "ACHBTC", "IMXBTC",
-    "GLMRBTC", "LOKABTC", "API3BTC", "ACABTC", "ANCBTC", "XNOBTC", "WOOBTC", "ALPINEBTC", "GMTBTC", "KDABTC",
-    "APEBTC", "MULTIBTC", "ASTRBTC", "MOBBTC", "NEXOBTC", "GALBTC", "LDOBTC", "OPBTC", "STGBTC", "GMXBTC",
-    "POLYXBTC", "APTBTC", "OSMOBTC", "HFTBTC", "HOOKBTC", "MAGICBTC", "RPLBTC", "GNSBTC", "SYNBTC", "LQTYBTC",
-    "IDBTC", "ARBBTC", "RDNTBTC", "EDUBTC", "SUIBTC", "MAVBTC", "PENDLEBTC", "ARKMBTC", "WLDBTC", "SEIBTC",
-    "CYBERBTC", "NTRNBTC", "TIABTC", "ORDIBTC", "VICBTC", "BLURBTC", "VANRYBTC", "ACEBTC"
-}
-
-
 class RedisClass:
     def __init__(self) -> None:
-        self.key_positive_links = 'spot_positive_links'
-        self.key_spot_bnb_cache = 'spot_bnb_binance'
-        self.key_spot_btc_cache = 'spot_btc_binance'
-        self.key_spot_usdt_cache = 'spot_usdt_binance'
-        self.key_spot_tusdt_cache = 'spot_tusdt_binance'
-        self.key_spot_fusdt_cache = 'spot_fusdt_binance'
+        self.key_positive_links = "spot_positive_links"
         self.time_spot_cache = 30
 
-class SpotBinance(RedisClass):
+
+class BaseSpotBinance(RedisClass):
     def __init__(self) -> None:
         super().__init__()
-        self.session = requests.Session()
-        self.spot_url = "https://api.binance.com/api/v3/ticker/price"
+        self.url_base = "https://api.binance.com"
+        self.tickers = {}
 
-        self.bnb = {}
-        self.btc = {}
-        self.usdt = {}
-        self.tusdt = {}
-        self.fusdt = {}
-
-    def get_binance_prices(self) -> dict:
-        response = requests.get(self.spot_url)
-        
+    def get_requests(self, url: str) -> dict:
+        response = requests.get(url)
         if response.status_code != 200:
             return None
         return response.json()
 
-    def process_symbol(self, dict, symbol, quote, price) -> list:
-        dict[symbol] = {'base': symbol[:-len(quote)], 'quote': quote, 'price': price, 'binance_price': price}
-        dict[f'{symbol}_fake'] = {'base': quote, 'quote': symbol[:-len(quote)], 'price': 1 / price, 'binance_price': price}
+
+class UpdateSpotTradingList(BaseSpotBinance):
+    def __init__(self):
+        super().__init__()
+        self.key_spot_trading_allow = "key_spot_trading_allow"
+        self.url_exchange_info = f"{self.url_base}/api/v1/exchangeInfo"
+        self.spot_trading_allow = {}
+
+    def update_spot_trading_list(self) -> int:
+        data = self.get_requests(self.url_exchange_info)
+        if not data: return f"Binance wrong requests ({self.url_exchange_info})"
+
+        for symbol_info in data["symbols"]:
+            status = symbol_info["status"]
+            is_trading_spot = symbol_info["isSpotTradingAllowed"]
+            
+            if status == "TRADING" and is_trading_spot == True:
+                self.spot_trading_allow[symbol_info["symbol"]] = {
+                    "base": symbol_info["baseAsset"],
+                    "quote": symbol_info["quoteAsset"],
+                }
+
+        cache.set(
+            self.key_spot_trading_allow,
+            self.spot_trading_allow, 
+            self.time_spot_cache
+        )
+
+        return len(self.spot_trading_allow)
+
+
+class UpdateSpotPrice(UpdateSpotTradingList):
+    def __init__(self) -> None:
+        super().__init__()
+        self.key_spot_prices = "key_spot_prices"
+        self.url_spot = f"{self.url_base}/api/v3/ticker/price"
+        self.allow_data = []
+
+    def update_spot_price(self) -> int:
+        data = self.get_requests(self.url_spot)
+        if not data: return f"Binance wrong requests ({self.url_spot})"
+
+        spot_trading_allow = cache.get(self.key_spot_trading_allow)
+        if not spot_trading_allow: 
+            self.update_spot_trading_list()
+            spot_trading_allow = cache.get(self.key_spot_trading_allow)
+            if not spot_trading_allow:  return f"Missing spot_trading_allow set"
+
+        for data_spot in data:
+            symbol = data_spot["symbol"]
+            symbol_info = spot_trading_allow.get(symbol)
+
+            if symbol_info is None: continue
+
+            self.allow_data.append({
+                "symbol": symbol,
+                "price": float(data_spot["price"]),
+                "binance_price": float(data_spot["price"]),
+                "base": symbol_info["base"],
+                "quote": symbol_info["quote"],
+            })
+            self.allow_data.append({
+                "symbol": symbol_info["quote"] + symbol_info["base"],
+                "price": 1 / float(data_spot["price"]),
+                "binance_price": float(data_spot["price"]),
+                "base": symbol_info["quote"],
+                "quote": symbol_info["base"],
+                "fake": True,
+            })
+        
+        cache.set(
+            self.key_spot_prices,
+            self.allow_data
+        )
+        return len(self.allow_data)
+
+
+class UpdateSpotBookTicker(UpdateSpotTradingList):
+    def __init__(self) -> None:
+        super().__init__()
+        self.key_spot_book_prices = "key_spot_book_prices"
+        self.url_spot = f"{self.url_base}/api/v3/ticker/bookTicker"
+        self.allow_data = []
+
+    def update_spot_price(self) -> int:
+        data = self.get_requests(self.url_spot)
+        if not data: return f"Binance wrong requests ({self.url_spot})"
+
+        spot_trading_allow = cache.get(self.key_spot_trading_allow)
+        if not spot_trading_allow: 
+            self.update_spot_trading_list()
+            spot_trading_allow = cache.get(self.key_spot_trading_allow)
+            if not spot_trading_allow:  return f"Missing spot_trading_allow set"
+
+        for data_spot in data:
+            symbol = data_spot["symbol"]
+            symbol_info = spot_trading_allow.get(symbol)
+
+            if symbol_info is None: continue
+
+            self.allow_data.append({
+                "symbol": symbol,
+
+                "bid_price": float(data_spot["bidPrice"]),
+                "bid_qty": float(data_spot["bidQty"]),
+                "ask_price": float(data_spot["askPrice"]),
+                "ask_qty": float(data_spot["askQty"]),
+
+                "base": symbol_info["base"],
+                "quote": symbol_info["quote"],
+            })
+            self.allow_data.append({
+                "symbol": symbol_info["quote"] + symbol_info["base"],
+
+                "bid_price": 1 / float(data_spot["bidPrice"]),
+                "bid_qty": float(data_spot["bidQty"]),
+                "ask_price": 1 / float(data_spot["askPrice"]),
+                "ask_qty": float(data_spot["askQty"]),
+
+                "base": symbol_info["quote"],
+                "quote": symbol_info["base"],
+                "fake": True,
+            })
+        
+        cache.set(
+            self.key_spot_book_prices,
+            self.allow_data
+        )
+        return len(self.allow_data)
     
-    def filter(self, data: dict) -> dict:
-        for ticker in data:
-            symbol = ticker['symbol']
-            price = float(ticker['price'])
 
-            if symbol in bnb:
-                self.process_symbol(self.bnb, symbol, 'BNB', price)
-            elif symbol in usdt:
-                self.process_symbol(self.usdt, symbol, 'USDT', price)
-            elif symbol in btc:
-                self.process_symbol(self.btc, symbol, 'BTC', price)
-            elif symbol in tusdt:
-                self.process_symbol(self.tusdt, symbol, 'TUSDT', price)
-            elif symbol in fusdt:
-                self.process_symbol(self.fusdt, symbol, 'FUSDT', price)
+class CheckPriceBinanceBySymbol(UpdateSpotPrice):
+    def __init__(self, symbol: str) -> None:
+        super().__init__()
+        self.symbol = symbol.upper()
+        self.symbol_info = []
 
-    def save(self) -> None:
-        cache.set(self.key_spot_bnb_cache, self.bnb, self.time_spot_cache)
-        cache.set(self.key_spot_usdt_cache, self.usdt, self.time_spot_cache)
-        cache.set(self.key_spot_btc_cache, self.btc, self.time_spot_cache)
-        cache.set(self.key_spot_tusdt_cache, self.tusdt, self.time_spot_cache)
-        cache.set(self.key_spot_fusdt_cache, self.fusdt, self.time_spot_cache)
+    def find_symbol(self, data: dict) -> list:
+        for symbol_info in data:
+            symbol = symbol_info["symbol"]
 
-    def main(self) -> int:
-        data = self.get_binance_prices()
-        if not data: return "Binance wrong requests"
+            if symbol == self.symbol:
+                self.symbol_info.append(symbol_info)
 
-        self.filter(data)
-        self.save()
-        return len(self.bnb) + len(self.usdt) + len(self.btc) + len(self.fusdt) + len(self.tusdt)
+        if len(self.symbol_info) == 0:
+            return None
+        return self.symbol_info
     
+    def main(self) -> list:
+        data = self.get_requests(self.url_spot)
+        info = self.find_symbol(data)
+        return info

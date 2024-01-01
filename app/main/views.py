@@ -4,10 +4,11 @@ from django.core.cache import cache
 
 from parsing.services import RedisClass
 from .forms import CheckTickerForm
-from .services import CheckPriceBinance
+from parsing.services import CheckPriceBinanceBySymbol
 
 
 app_name = __package__
+
 
 class MenuView:
     def menu_view(self, request):
@@ -16,6 +17,7 @@ class MenuView:
             {'label': 'Проверить ticker', 'url': '/check-ticker/'},
         ]
         return menu_items
+
 
 class Home(View, MenuView):
     template_name = 'home.html'
@@ -39,11 +41,11 @@ class CheckTickerView(View, MenuView):
         if not form.is_valid():
             return redirect('check-ticker')
 
-        ticker = form.cleaned_data['ticker']
-        info = CheckPriceBinance(ticker).main()
+        symbol = form.cleaned_data['ticker']
+        info = CheckPriceBinanceBySymbol(symbol).main()
         context = {
             'form': form, 'info': info, 
-            'ticker': ticker, 
+            'ticker': symbol, 
             'menu_items': self.menu_view
         }
         return render(request, app_name + '/' + self.template_name, context)

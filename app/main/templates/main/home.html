@@ -23,19 +23,31 @@
                             <strong>Base:</strong> {{ link.first.base }}<br>
                             <strong>Quote:</strong> {{ link.first.quote }}<br>
                             <strong>Price:</strong> {{ link.first.price }}<br>
-                            <strong>Binance price:</strong> {{ link.first.binance_price }}
+                            <strong>Binance price:</strong> {{ link.first.binance_price }}<br>
+                            <strong>Ask price:</strong> {{ link.first.ask_price }}<br>
+                            <strong>Bid price:</strong> {{ link.first.bid_price }}<br>
+                            <strong>Ask qty:</strong> {{ link.first.ask_qty }}<br>
+                            <strong>Bid qty:</strong> {{ link.first.bid_qty }}
                         </td>
                         <td>
                             <strong>Base:</strong> {{ link.second.base }}<br>
                             <strong>Quote:</strong> {{ link.second.quote }}<br>
                             <strong>Price:</strong> {{ link.second.price }}<br>
-                            <strong>Binance price:</strong> {{ link.second.binance_price }}
+                            <strong>Binance price:</strong> {{ link.second.binance_price }}<br>
+                            <strong>Ask price:</strong> {{ link.second.ask_price }}<br>
+                            <strong>Bid price:</strong> {{ link.second.bid_price }}<br>
+                            <strong>Ask qty:</strong> {{ link.second.ask_qty }}<br>
+                            <strong>Bid qty:</strong> {{ link.second.bid_qty }}
                         </td>
                         <td>
                             <strong>Base:</strong> {{ link.third.base }}<br>
                             <strong>Quote:</strong> {{ link.third.quote }}<br>
                             <strong>Price:</strong> {{ link.third.price }}<br>
-                            <strong>Binance price:</strong> {{ link.third.binance_price }}
+                            <strong>Binance price:</strong> {{ link.third.binance_price }}<br>
+                            <strong>Ask price:</strong> {{ link.third.ask_price }}<br>
+                            <strong>Bid price:</strong> {{ link.third.bid_price }}<br>
+                            <strong>Ask qty:</strong> {{ link.third.ask_qty }}<br>
+                            <strong>Bid qty:</strong> {{ link.third.bid_qty }}
                         </td>
                         <td>{{ link.spread }}</td>
                     </tr>
@@ -46,5 +58,5 @@
     {% else %}
         <p>No positive links available.</p>
     {% endif %}
-    
+
 {% endblock %}
