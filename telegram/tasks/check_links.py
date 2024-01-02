@@ -6,11 +6,15 @@ def get_string_links(info):
     symbol = info['symbol']
     bid_price = info['bid_price']
     ask_price = info['ask_price']
+    bid_qty = info['bid_qty']
+    ask_qty = info['ask_qty']
 
     string = (
         f'Symbol: {symbol}\n'
         f'Bid price: {bid_price}\n'
         f'Ask price: {ask_price}\n'
+        f'Bid price: {bid_qty}\n'
+        f'Ask price: {ask_qty}\n'
     )
     return string
 

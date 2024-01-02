@@ -13,7 +13,7 @@ from config import TOKEN
 dp = Dispatcher()
 bot = Bot(TOKEN, parse_mode=ParseMode.HTML)
 
-# dp.include_router(start_message)
+dp.include_router(start_message)
 
 async def main() -> None:
     scheduler.start()
