@@ -12,7 +12,15 @@ DEBUG = getenv('DEBUG').upper() == 'TRUE'
 
 ALLOWED_HOSTS = getenv('ALLOWED_HOSTS').split(',')
 
-EXTENSION_APP = ['parsing', 'count', 'main', 'binance', 'trading']
+EXTENSION_APP = [
+    'parsing',
+    'count',
+    'main',
+    'binance',
+    'trading',
+    'api',
+    'rest_framework'
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',

@@ -9,66 +9,81 @@ services:
   #   depends_on:
   #     - web
   #   networks:
-  #     - trade-bot-network
+  #     - web-network
 
+  # web
   db:
     image: postgres:16
     volumes:
-        - ./db/postgres:/var/lib/postgresql/data/
+        - ./db/web-postgres:/var/lib/postgresql/data/
     ports:
         - 5435:5432
     env_file:
         - .env
     networks:
-      - trade-bot-network
+      - web-network
       
   redis:
     ports:
       - 6380:6379
     volumes:
-      - ./db/redis:/data
+      - ./db/web-redis:/data
     image: redis:7-alpine
     networks:
-      - trade-bot-network
+      - web-network
 
   web:
     restart: always
-    build: .
+    container_name: trade-bot-web
+    build: ./web
     command: sh -c "sleep 2 && gunicorn myproject.wsgi:application -w 4 -b 0.0.0.0:8000"
     ports:
       - 8001:8000
     env_file:
       - .env
     volumes:
-      - ./app:/app
+      - ./web:/app
     depends_on:
       - redis
     networks:
-      - trade-bot-network
+      - web-network
+      - telegram-network
 
   celery:
-    build: .
+    build: ./web
     command: sh -c "celery -A myproject worker --loglevel=info"
     volumes:
-      - ./app:/app
+      - ./web:/app
     env_file:
       - .env
     depends_on:
         - redis
     networks:
-      - trade-bot-network
+      - web-network
 
   celery-beat:
-    build: .
+    build: ./web
     command: celery -A myproject beat --loglevel=Error
     env_file:
       - .env
     volumes:
-      - ./app:/app
+      - ./web:/app
     depends_on:
       - celery
     networks:
-      - trade-bot-network
+      - web-network
+
+  # Telegram
+  telegram:
+    build: ./telegram
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - ./telegram:/app
+    networks:
+      - telegram-network
 
 networks:
-  trade-bot-network:
+  web-network:
+  telegram-network:

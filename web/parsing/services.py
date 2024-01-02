@@ -5,7 +5,6 @@ from django.core.cache import cache
 
 class RedisClass:
     def __init__(self) -> None:
-        self.key_positive_links = "spot_positive_links"
         self.time_spot_cache = 30
 
 

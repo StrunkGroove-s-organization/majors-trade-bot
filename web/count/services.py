@@ -62,26 +62,31 @@ class Count(UpdateSpotPrice):
 class CountBookTicker(UpdateSpotBookTicker):
     def __init__(self) -> None:
         super().__init__()
+        self.key_positive_links = "spot_positive_links"
         self.positive_spread = []
 
     def count_spread(self, start_price: float, mid_price: float, end_price: float) -> float:
-        spread = ((start_price * mid_price * end_price) - 1) * 100
-        return spread
+        return ((start_price * mid_price * end_price) - 1) * 100
 
-    def get_price_by_symbol(self, coin: str, info: dict) -> float:
+    def get_price_by_symbol(self, coin: str, info: dict, reverse=False) -> float:
         fake = info.get('fake')
         
+        bid_price = info['bid_price']
+        ask_price = info['ask_price']
+        if reverse is True:
+            bid_price, ask_price = ask_price, bid_price
+
         if fake is not True:
             if coin == info['base']:
-                return info['quote'], info['bid_price']
+                return info['quote'], bid_price
             elif coin == info['quote']:
-                return info['base'], info['ask_price']
+                return info['base'], ask_price
             
         else:
             if coin == info['base']:
-                return info['quote'], info['ask_price']
+                return info['quote'], ask_price
             elif coin == info['quote']:
-                return info['base'], info['bid_price']
+                return info['base'], bid_price
             
     def count(self, data: dict) -> None:
         for start_info in data:
@@ -111,6 +116,7 @@ class CountBookTicker(UpdateSpotBookTicker):
                     get_end_coin, end_price = self.get_price_by_symbol(
                         coin=get_mid_coin,
                         info=end_info,
+                        # reverse=True,
                     )
                     spread = self.count_spread(
                         start_price,

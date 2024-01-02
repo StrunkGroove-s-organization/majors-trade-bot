@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.core.cache import cache
 
-from parsing.services import RedisClass
+from count.services import CountBookTicker
 from .forms import CheckTickerForm
 from parsing.services import CheckPriceBinanceBySymbol
 
@@ -23,7 +23,7 @@ class Home(View, MenuView):
     template_name = 'home.html'
 
     def get(self, request, *args, **kwargs):
-        positive_links = cache.get(RedisClass().key_positive_links)
+        positive_links = cache.get(CountBookTicker().key_positive_links)
         context = {'positive_links': positive_links, 'menu_items': self.menu_view}
         return render(request, app_name + '/' + self.template_name, context)
 
