@@ -1,0 +1,61 @@
+{% extends 'main/base.html' %}
+
+{% block title %}История прибыльных связок{% endblock %}
+
+{% block content %}
+    <h1>История прибыльных связок</h1>
+
+    {% for key, data_list in grouped_data.items %}
+        <h2>{{ key.0 }}--{{ key.1 }}--{{ key.2 }}</h2>
+        <table border="1">
+            <tr>
+                <th>Timestamp</th>
+                <th>Spread</th>
+
+                <th>First Ask Price</th>
+                <th>First Bid Price</th>
+                <th>First Ask Quantity</th>
+                <th>First Bid Quantity</th>
+                <!-- <th>First Order Book</th> -->
+
+                <th>Second Ask Price</th>
+                <th>Second Bid Price</th>
+                <th>Second Ask Quantity</th>
+                <th>Second Bid Quantity</th>
+                <!-- <th>Second Order Book</th> -->
+
+                <th>Third Ask Price</th>
+                <th>Third Bid Price</th>
+                <th>Third Ask Quantity</th>
+                <th>Third Bid Quantity</th>
+                <!-- <th>Third Order Book</th> -->
+            </tr>
+
+            {% for item in data_list|dictsort:"timestamp" %}
+                <tr>
+                    <td>{{ item.timestamp|date:"Y-m-d H:i:s" }}</td>
+                    
+                    <td>{{ item.spread }}</td>
+
+                    <td>{{ item.first_ask_price }}</td>
+                    <td>{{ item.first_bid_price }}</td>
+                    <td>{{ item.first_ask_qty }}</td>
+                    <td>{{ item.first_bid_qty }}</td>
+                    <!-- <td>{{ item.first_order_book }}</td> -->
+
+                    <td>{{ item.second_ask_price }}</td>
+                    <td>{{ item.second_bid_price }}</td>
+                    <td>{{ item.second_ask_qty }}</td>
+                    <td>{{ item.second_bid_qty }}</td>
+                    <!-- <td>{{ item.second_order_book }}</td> -->
+
+                    <td>{{ item.third_ask_price }}</td>
+                    <td>{{ item.third_bid_price }}</td>
+                    <td>{{ item.third_ask_qty }}</td>
+                    <td>{{ item.third_bid_qty }}</td>
+                    <!-- <td>{{ item.third_order_book }}</td> -->
+                </tr>
+            {% endfor %}
+        </table>
+    {% endfor %}
+{% endblock %}

@@ -116,7 +116,6 @@ class CountBookTicker(UpdateSpotBookTicker):
                     get_end_coin, end_price = self.get_price_by_symbol(
                         coin=get_mid_coin,
                         info=end_info,
-                        # reverse=True,
                     )
                     spread = self.count_spread(
                         start_price,
@@ -138,7 +137,8 @@ class CountBookTicker(UpdateSpotBookTicker):
 
     def main(self) -> int:
         data = cache.get(self.key_spot_book_prices)
-
+        if data is None: return 'Отсутствуют данные для расчета!'
+        
         self.count(data)
 
         cache.set(

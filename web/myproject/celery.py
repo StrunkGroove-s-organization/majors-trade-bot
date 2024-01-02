@@ -26,4 +26,10 @@ app.conf.beat_schedule = {
         'task': 'count.tasks.count',
         'schedule': 1,
     },
+
+    ### Tracking
+    'tracking-links-task': {
+        'task': 'main.tasks.tracking_links',
+        'schedule': 1,
+    },
 }

@@ -1,4 +1,3 @@
-from aiogram.types import Message
 from aiogram import Router
 from aiogram.filters import CommandStart
 from aiogram.types import Message

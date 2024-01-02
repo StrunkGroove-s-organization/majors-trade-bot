@@ -6,6 +6,7 @@ from django.core.cache import cache
 class RedisClass:
     def __init__(self) -> None:
         self.time_spot_cache = 30
+        self.time_cache = 30
 
 
 class BaseSpotBinance(RedisClass):

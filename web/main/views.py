@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.core.cache import cache
 
-from count.services import CountBookTicker
+from .services import TrackingLinks
 from .forms import CheckTickerForm
+from count.services import CountBookTicker
 from parsing.services import CheckPriceBinanceBySymbol
 
 
@@ -49,3 +50,13 @@ class CheckTickerView(View, MenuView):
             'menu_items': self.menu_view
         }
         return render(request, app_name + '/' + self.template_name, context)
+    
+
+class HistoryLinksView(View, MenuView):
+    template_name = 'history_links.html'
+
+    def get(self, request, *args, **kwargs):
+        grouped_data = TrackingLinks().get_data()
+        context = {'grouped_data': grouped_data}
+        return render(request, app_name + '/' + self.template_name, context)
+    
