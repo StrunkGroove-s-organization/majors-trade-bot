@@ -1,7 +1,6 @@
 import requests
-from os import getenv
+from config import USERS
 
-users = getenv('TG_USERS').split(',')
 
 def get_string_links(info):
     symbol = info['symbol']
@@ -21,7 +20,7 @@ async def check_links():
     url = "http://web:8000/api/v1/best-links-binance"
     response = requests.get(url)
     if response.status_code != 200:
-        await bot.send_message(chat_id=users[0], text=str(response.status_code))
+        await bot.send_message(chat_id=USERS[0], text=str(response.status_code))
         return
     
     res = response.json()
@@ -46,6 +45,6 @@ async def check_links():
         )
         allow_links.append(link)
 
-    for user in users:
+    for user in USERS:
         for link in allow_links:
             await bot.send_message(chat_id=user, text=link)

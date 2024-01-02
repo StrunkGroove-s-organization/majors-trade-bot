@@ -8,8 +8,7 @@ from aiogram.enums import ParseMode
 
 from tasks.schedulers import scheduler
 from handlers.start import start_message
-
-TOKEN = getenv("API_TELEGRAM_BOT")
+from config import TOKEN
 
 dp = Dispatcher()
 bot = Bot(TOKEN, parse_mode=ParseMode.HTML)
