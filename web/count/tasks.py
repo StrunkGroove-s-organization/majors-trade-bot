@@ -1,5 +1,6 @@
 from myproject.celery import app
-from .services import Count, CountBookTicker
+from .services import CountBookTicker
+
 
 @app.task
 def count():

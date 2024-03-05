@@ -6,11 +6,20 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 class BestLinksBinance(APIView):
-
     @csrf_exempt
     def get(self, request, *args, **kwargs):
         best_links = cache.get(CountBookTicker().key_positive_links)
 
         if best_links is not None:
             return Response({'data': best_links})
+        return Response({'error': 'Data not found in the cache'}, status=404)
+    
+
+class ProfitableLinksBinance(APIView):
+    @csrf_exempt
+    def get(self, request, *args, **kwargs):
+        links = cache.get(CountBookTicker().key_profitable_links)
+
+        if links is not None:
+            return Response(links)
         return Response({'error': 'Data not found in the cache'}, status=404)

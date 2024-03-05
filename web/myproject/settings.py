@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = getenv('SECRET_KEY')
 
-DEBUG = getenv('DEBUG').upper() == 'TRUE'
+DEBUG = getenv('DEBUG') == 'TRUE'
 
 ALLOWED_HOSTS = getenv('ALLOWED_HOSTS').split(',')
 
@@ -64,11 +64,11 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DB'),
-        'USER': os.getenv('POSTGRES_USER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': 'db',
-        'PORT': os.getenv('POSTGRES_PORT'),
+        'NAME': getenv('POSTGRES_DB'),
+        'USER': getenv('POSTGRES_USER'),
+        'PASSWORD': getenv('POSTGRES_PASSWORD'),
+        'HOST': 'web-db',
+        'PORT': getenv('POSTGRES_PORT'),
     },
 }
 

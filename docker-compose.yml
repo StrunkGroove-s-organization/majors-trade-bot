@@ -1,6 +1,8 @@
 version: "3"
 
 services:
+
+  # Nginx
   # nginx:
   #   restart: always
   #   build: ./nginx/test
@@ -11,8 +13,8 @@ services:
   #   networks:
   #     - web-network
 
-  # web
-  db:
+  # Web
+  web-db:
     image: postgres:16
     volumes:
         - ./db/web-postgres:/var/lib/postgresql/data/
@@ -44,10 +46,12 @@ services:
     volumes:
       - ./web:/app
     depends_on:
+      - web-db
       - redis
     networks:
       - web-network
       - telegram-network
+      - trading-network
 
   celery:
     build: ./web
@@ -74,18 +78,33 @@ services:
       - web-network
 
   # Telegram
-  telegram:
-    build: ./telegram
-    env_file:
-      - .env
-    restart: always
-    volumes:
-      - ./telegram:/app
-    networks:
-      - telegram-network
-    depends_on:
-      - web
+  # telegram:
+  #   build: ./telegram
+  #   env_file:
+  #     - .env
+  #   restart: always
+  #   volumes:
+  #     - ./telegram:/app
+  #   networks:
+  #     - telegram-network
+  #   depends_on:
+  #     - web
+
+  # Trading
+  # trading:
+  #   build: ./trading
+  #   env_file:
+  #     - .env
+  #   restart: always
+  #   volumes:
+  #     - ./trading:/app
+  #   networks:
+  #     - trading-network
+  #   depends_on:
+  #     - web
+  #   tty: true
 
 networks:
   web-network:
   telegram-network:
+  trading-network:

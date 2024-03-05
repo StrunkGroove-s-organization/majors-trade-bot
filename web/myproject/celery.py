@@ -12,13 +12,13 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
 
     ### Parsing
-    'update-spot-price-task': {
-        'task': 'parsing.tasks.update_spot_price',
-        'schedule': 1,
-    },
-    'update-spot-trading-list-task': {
-        'task': 'parsing.tasks.update_spot_trading_list',
+    'update-allow-spot-trading-task': {
+        'task': 'parsing.tasks.update_allow_spot_trading',
         'schedule': crontab(hour=0, minute=0),
+    },
+    'update-spot-book-ticker-task': {
+        'task': 'parsing.tasks.update_spot_book_ticker',
+        'schedule': 1,
     },
 
     ### Counting
@@ -27,9 +27,9 @@ app.conf.beat_schedule = {
         'schedule': 1,
     },
 
-    ### Tracking
-    'tracking-links-task': {
-        'task': 'main.tasks.tracking_links',
-        'schedule': 1,
-    },
+    # ### Tracking
+    # 'tracking-links-task': {
+    #     'task': 'main.tasks.tracking_links',
+    #     'schedule': 1,
+    # },
 }
