@@ -17,7 +17,6 @@ class BaseSpotBinance(RedisClass):
     def __init__(self) -> None:
         super().__init__()
         self.url_base = "https://api.binance.com"
-        self.tickers = {}
 
     def get_requests(self, url: str) -> dict:
         response = requests.get(url)
@@ -26,7 +25,7 @@ class BaseSpotBinance(RedisClass):
 
 
 class UpdateAllowSpotTrading(BaseSpotBinance):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.__key_spot_trading_allow = "key_spot_trading_allow"
         self.__url_exchange_info = f"{self.url_base}/api/v1/exchangeInfo"
@@ -61,7 +60,7 @@ class UpdateAllowSpotTrading(BaseSpotBinance):
         
         raise MissingSpotTradingAllowError()
 
-    def __save(self):
+    def __save(self) -> None:
         cache.set(
             self.__key_spot_trading_allow,
             self.__spot_trading_allow, 
@@ -110,9 +109,8 @@ class UpdateSpotBookTicker(UpdateAllowSpotTrading):
         for data_spot in data:
             symbol = data_spot["symbol"]
             symbol_info = spot_trading_allow.get(symbol)
-
-            if isinstance(symbol_info, SymbolInfo):
-                yield symbol_info, data_spot
+            if symbol_info is None: continue
+            yield symbol_info, data_spot
     
     def get_spot_price(self) -> dict[str, DataBookTicker]:
         spot_prices = cache.get(self.__key_spot_book_prices)

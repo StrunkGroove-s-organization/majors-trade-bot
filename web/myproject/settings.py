@@ -1,5 +1,4 @@
 import os 
-
 from os import getenv
 from pathlib import Path
 
@@ -17,8 +16,6 @@ EXTENSION_APP = [
     'count',
     'main',
     'binance',
-    'trading',
-    'api',
     'rest_framework'
 ]
 

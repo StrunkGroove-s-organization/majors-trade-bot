@@ -36,9 +36,8 @@ services:
 
   web:
     restart: always
-    container_name: trade-bot-web
     build: ./web
-    command: sh -c "sleep 2 && gunicorn myproject.wsgi:application -w 4 -b 0.0.0.0:8000"
+    command: sh -c "sleep 2 && gunicorn myproject.wsgi:application -w 4 -b 0.0.0.0:8000 --access-logfile - --error-logfile -"
     ports:
       - 8001:8000
     env_file:

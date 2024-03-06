@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Мой проект{% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
     <div id="menu">
-        <p><a href="{% url 'home' %}">Связки</a></p>
-        <p><a href="{% url 'history-links' %}">Просмотреть историю прибыльных связок</a></p>
+        {% for item in menu %}
+            <p><a href="{% url item.url_name %}">{{ item.label }}</a></p>
+        {% endfor %}
     </div>
     <div id="content">
         {% block content %}{% endblock %}

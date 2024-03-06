@@ -28,8 +28,8 @@ app.conf.beat_schedule = {
     },
 
     # ### Tracking
-    # 'tracking-links-task': {
-    #     'task': 'main.tasks.tracking_links',
-    #     'schedule': 1,
-    # },
+    'analysis-profit-links-task': {
+        'task': 'count.tasks.analysis_profit_links',
+        'schedule': 1,
+    },
 }

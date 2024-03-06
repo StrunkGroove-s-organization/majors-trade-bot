@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import Home, HistoryLinksView
+from .views import Home, ProfitableLinks
 
 
 urlpatterns = [
     path('', Home.as_view(), name='home'),
-    path('history-links/', HistoryLinksView.as_view(), name='history-links'),
+    path('profitable-links/', ProfitableLinks.as_view(), name='profitable-links'),
 ]
